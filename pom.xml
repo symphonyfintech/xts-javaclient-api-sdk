@@ -1,19 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.symphonyfintech.xts.rest</groupId>
-    <artifactId>declarations</artifactId>
+    <artifactId>xts-rest-api</artifactId>
     <version>1.0-SNAPSHOT</version>
-	<relativePath>uberPom.xml</relativePath>
   </parent>
   
-  <!-- <groupId>com.symphonyfintech.xts.ally</groupId> -->
-  <artifactId>xts-rest-api</artifactId>
-  <!-- <version>1.0-SNAPSHOT</version> -->
+  <artifactId>xts-api</artifactId>
   <packaging>pom</packaging>
-  <name>xts-rest-api</name>
-  <!-- <description>Parent project of API projects</description> -->
+  <name>xts-api</name>
   <modules>
-  	<module>xts-rest-api</module>
+  	<module>xts-sdk</module>
+	<module>api-example</module>
   </modules>
+  
 </project>

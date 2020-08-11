@@ -145,5 +145,5 @@ To Cancel an order you need to user Interactive api and In response you will get
 	}
  ```
 ### Examples
-Example code demonstrating how to use XTS Api can be found in the separate GitHub repository. 
+Example code demonstrating how to use XTS Api can be found at xts-javaclient-api-sdk/xts-rest-api/api-example/. 
 

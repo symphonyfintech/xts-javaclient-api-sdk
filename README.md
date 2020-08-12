@@ -143,6 +143,81 @@ To Cancel an order you need to user Interactive api and In response you will get
 		
 	}
  ```
+### Sample Code to Login and PlaceOrder
+
+```js
+package com.sf.xts.api.sdk.test;
+
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.sf.xts.api.sdk.interactive.OrderBookResponse;
+import com.sf.xts.api.sdk.interactive.OrderExecutionResponse;
+import com.sf.xts.api.sdk.interactive.PositionResponse;
+import com.sf.xts.api.sdk.interactive.XTSAPIInteractiveEvents;
+import com.sf.xts.api.sdk.interactive.placeOrder.PlaceOrderRequest;
+import com.sf.xts.api.sdk.interactive.placeOrder.PlaceOrderResponse;
+import com.sf.xts.api.sdk.main.api.APIException;
+import com.sf.xts.api.sdk.main.api.InteractiveClient;
+
+public class Tester  implements XTSAPIInteractiveEvents {
+		public static Logger logger  =  LoggerFactory.getLogger(TestMarketdata.class);
+		public static void main(String ars[]) {
+			
+			InteractiveClient interactiveClient = null;
+			try {
+				interactiveClient = new InteractiveClient(new TestInteractive());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			//LOGIN
+			String secretKey="INTERACTIVE-SECRET-KEY";
+			String appKey="INTERACTIVE-APP-KEY";
+			try {
+				interactiveClient.Login(secretKey, appKey);
+			} catch (APIException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			
+			//PLACEORDER
+			PlaceOrderRequest placeOrderRequest = new PlaceOrderRequest() {{
+				exchangeSegment = "NSECM";
+				exchangeInstrumentId = 25;
+				orderType = "MARKET";
+				orderSide = "BUY";
+				timeInForce = "DAY";
+				disclosedQuantity = 0;
+				orderQuantity = 10;
+				limitPrice = 0d;
+				stopPrice = 0d;
+				orderUniqueIdentifier = "454845";
+				productType = "MIS";
+			}};
+			PlaceOrderResponse placeOrderResponse = interactiveClient.PlaceOrder(placeOrderRequest);
+			logger.info("placeOrderResponse AppOrderId : " + placeOrderResponse.getResult().getAppOrderID().toString());
+		}
+		@Override
+		public void onTrade(OrderExecutionResponse orderExecutionResponse) {
+			 //TODO Auto-generated method stub
+			System.out.println("OrderExecutionResponse : ExchangeOrderid: "+orderExecutionResponse.getExchangeOrderID() + " OrderStatus:  "+orderExecutionResponse.getOrderStatus());
+		}
+
+		@Override
+		public void onExecutionReport(OrderBookResponse orderBookResponse) {
+			// TODO Auto-generated method stub
+			System.out.println("OrderBookResponse : AppOrderID :"+orderBookResponse.getAppOrderID() + " OrderStatus : "+orderBookResponse.getOrderStatus());
+		}
+
+		@Override
+		public void onPosition(PositionResponse positionResponse) {
+			// TODO Auto-generated method stub
+			System.out.println("PositionResponse : NetValue : "+ positionResponse.getNetValue()+ " MTM : "+positionResponse.getMTM() + " Realized MTM :"+positionResponse.getRealizedMTM());
+		}
+}
+```
 ### Examples
 Example code demonstrating how to use XTS Api can be found at xts-javaclient-api-sdk/xts-rest-api/api-example/. 
 

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.sf.xts.api.sdk.main.api.APIException;
@@ -231,6 +233,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 				}};
 				EquitySymbolResponse equitysymbolResponse = marketDataClient.getEquitySymbol(equitySymbolRequest);
 				logger.info("EquitysymbolResponse : " + equitysymbolResponse.getResult().toString());
+				if(equitysymbolResponse.getDescription().toString() .equals("ok")) {
+					logger.info("EquitysymbolResponse  Description: "+equitysymbolResponse.getResult().get(0).getDescription()+ " PriceBand "+equitysymbolResponse.getResult().get(0).getPriceBand());
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -254,6 +259,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 				}};
 				ExpiryDateResponse expiryDateResponse = marketDataClient.getExpiryDate(expiryDateRequest);
 				logger.info("ExpiryDateResponse : " + expiryDateResponse.getResult().toString());
+				for(int expiry=0; expiry<expiryDateResponse.getResult().size(); expiry++) {
+					logger.info("ExpiryDateResponse :"+expiryDateResponse.getResult().get(expiry));
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -279,6 +287,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 				
 				FutureSymbolResponse futureSymbolResponse = marketDataClient.getFutureSymbol(futureSymbolRequest);
 				logger.info(" FutureSymbolResponse : " + futureSymbolResponse.getResult().toString());
+				if(futureSymbolResponse.getDescription().toString() .equals("ok")) {
+					logger.info("FutureSymbolResponse  Description: "+futureSymbolResponse.getResult().get(0).getDescription()+ " PriceBand "+futureSymbolResponse.getResult().get(0).getPriceBand());
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -308,6 +319,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 				
 				OptionSymbolResponse optionSymbolResponse = marketDataClient.getOptionSymbol(optionSymbolRequest);
 				logger.info("OptionSymbolResponse : " + optionSymbolResponse.getResult().toString());
+				if(optionSymbolResponse.getDescription().toString() .equals("ok")) {
+					logger.info("OptionSymbolResponse  Description: "+optionSymbolResponse.getResult().get(0).getDescription()+ " PriceBand "+optionSymbolResponse.getResult().get(0).getPriceBand());
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -332,6 +346,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 				}};
 				OptionTypeResponse optionTypeResponse = marketDataClient.getOptionType(optionTypeRequest);
 				logger.info("OptionTypeResponse : " + optionTypeResponse.getResult().toString());
+				for(int option=0; option<optionTypeResponse.getResult().size(); option++) {
+					logger.info("SeriesResponse :"+optionTypeResponse.getResult().get(option));
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -347,6 +364,9 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			try {
 				SeriesResponse seriesResponse = marketDataClient.getSeries(1);
 				logger.info("SeriesResponse : " + seriesResponse.getResult().toString());
+				for(int series=0; series<seriesResponse.getResult().size(); series++) {
+					logger.info("SeriesResponse :"+seriesResponse.getResult().get(series));
+				}
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -362,7 +382,7 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			try {
 				String exchange = "NSECM";
 				IndexListResponse indexListResponse = marketDataClient.getIndexList(exchange);
-				logger.info("IndexListResponse : " + indexListResponse.getResult().toString());
+				logger.info("IndexListResponse : " +"ExchangeSegment: "+indexListResponse.getResult().getExchangeSegment()+" IndexList: "+ indexListResponse.getResult().getIndexList());
 			} catch (APIException e) {
 				logger.info(e.toString());
 			}
@@ -407,7 +427,15 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			Thread.sleep(2000);
 			try {
 				QuotesResponse OIQuoteResponse = marketDataClient.getQuoteOpenInterest(instrumentList);
-				logger.info("OI QuotesResponse : " + OIQuoteResponse.getResult().getMdp());
+				logger.info("OI QuotesResponse : " + OIQuoteResponse.getResult().getListQuotes());
+				JSONObject quoteobject;
+				String[] quotes = OIQuoteResponse.getResult().getListQuotes();
+				for(int j=0; j<= quotes.length;j++) {
+					quoteobject = new JSONObject(quotes[0]);
+					logger.info(j+" OIQuoteResponse ExchangeInstrumentid: "+quoteobject.get("ExchangeInstrumentID"));
+					logger.info(j+" OIQuoteResponse Bids: "+quoteobject.get("Bids"));
+					logger.info(j+" OIQuoteResponse Asks: "+quoteobject.get("Asks"));
+					}
 				
 			} catch (APIException e) {
 				logger.info(e.toString());
@@ -425,7 +453,15 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			 */
 			try {
 				QuotesResponse markedtDataQuoteResponse = marketDataClient.getQuoteMarketData(instrumentList);
-				logger.info("MarketDataQuotesResponse : " + markedtDataQuoteResponse.getResult().getMdp());
+				logger.info("MarketDataQuotesResponse : " + markedtDataQuoteResponse.getResult().getListQuotes());
+				JSONObject quoteobject;
+				String[] quotes = markedtDataQuoteResponse.getResult().getListQuotes();
+				for(int j=0; j<= quotes.length;j++) {
+					quoteobject = new JSONObject(quotes[0]);
+					logger.info(j+" MarketDataQuotesResponse ExchangeInstrumentid: "+quoteobject.get("ExchangeInstrumentID"));
+					logger.info(j+" MarketDataQuotesResponse Bids: "+quoteobject.get("Bids"));
+					logger.info(j+" MarketDataQuotesResponse Asks: "+quoteobject.get("Asks"));
+					}
 				
 			} catch (APIException e) {
 				logger.info(e.toString());
@@ -442,6 +478,14 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			try {
 				QuotesResponse touchlineQuoteResponse = marketDataClient.getQuoteTouchLine(instrumentList);
 				logger.info("TouchLineQuotesResponse : " + touchlineQuoteResponse.getResult().getMdp());
+				JSONObject quoteobject;
+				String[] quotes = touchlineQuoteResponse.getResult().getListQuotes();
+				for(int j=0; j<= quotes.length;j++) {
+					quoteobject = new JSONObject(quotes[0]);
+					logger.info(j+" TouchLineQuotesResponse ExchangeInstrumentid: "+quoteobject.get("ExchangeInstrumentID"));
+					logger.info(j+" TouchLineQuotesResponse Bids: "+quoteobject.get("Bids"));
+					logger.info(j+" TouchLineQuotesResponse Asks: "+quoteobject.get("Asks"));
+					}
 				
 			} catch (APIException e) {
 				logger.info(e.toString());
@@ -458,6 +502,14 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			try {
 				QuotesResponse candleDataQuoteResponse = marketDataClient.getQuoteCandleData(instrumentList);
 				logger.info("CandleDataQuotesResponse : " + candleDataQuoteResponse.getResult().getMdp());
+				JSONObject quoteobject;
+				String[] quotes = candleDataQuoteResponse.getResult().getListQuotes();
+				for(int j=0; j<= quotes.length;j++) {
+					quoteobject = new JSONObject(quotes[0]);
+					logger.info(j+" CandleDataQuotesResponse ExchangeInstrumentid: "+quoteobject.get("ExchangeInstrumentID"));
+					logger.info(j+" CandleDataQuotesResponse Bids: "+quoteobject.get("Bids"));
+					logger.info(j+" CandleDataQuotesResponse Asks: "+quoteobject.get("Asks"));
+					}
 				
 			} catch (APIException e) {
 				logger.info(e.toString());
@@ -473,7 +525,15 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 			 */
 			try {
 				QuotesResponse indexQuoteResponse = marketDataClient.getQuoteIndex(instrumentList);
-				logger.info("IndexQuotesResponse : " + indexQuoteResponse.getResult().getMdp());
+				logger.info("IndexQuotesResponse : " + indexQuoteResponse.getResult().getListQuotes());
+				JSONObject quoteobject;
+				String[] quotes = indexQuoteResponse.getResult().getListQuotes();
+				for(int j=0; j<= quotes.length;j++) {
+					quoteobject = new JSONObject(quotes[0]);
+					logger.info(j+" IndexQuotesResponse ExchangeInstrumentid: "+quoteobject.get("ExchangeInstrumentID"));
+					logger.info(j+" IndexQuotesResponse Bids: "+quoteobject.get("Bids"));
+					logger.info(j+" IndexQuotesResponse Asks: "+quoteobject.get("Asks"));
+					}
 				
 			} catch (APIException e) {
 				logger.info(e.toString());

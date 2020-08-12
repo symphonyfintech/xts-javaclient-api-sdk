@@ -16,8 +16,7 @@ https://symphonyfintech.com/xts-trading-front-end-api-v2/
     Internet Access.
 
 ### Build
-Run the build.bat file in the project. It will generate a jar file in your Example project which will help you access all the services of Marketdata and Interactive.
-Add API dependencies in your project as follow
+Run the build.bat file in the project. It will generate a jar file in your Example project which will help you access all the services of Marketdata and Interactive.Set repository path in profile and Add API dependencies in your project as follow
 ```js
   <dependency>
 	<groupId>com.symphonyfintech.xts.rest</groupId>
@@ -27,7 +26,7 @@ Add API dependencies in your project as follow
 	<systemPath>${project.basedir}/lib/xts-rest-1.0-SNAPSHOT.jar</systemPath>
   </dependency>
    ``` 
-ahref
+xts-javaclient-api-sdk/uberPom.xml 
 ### Maven
 Add the following dependency to pom.xml
 ```js

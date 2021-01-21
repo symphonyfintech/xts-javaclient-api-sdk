@@ -29,4 +29,6 @@ public interface XTSAPIInteractiveEvents {
 	 */
 	void onPosition(PositionResponse positionResponse);
 
+	void onTradeConversion(TradeConversionResponse orderExecutionResponse);
+
 }

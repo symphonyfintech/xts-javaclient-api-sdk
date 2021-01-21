@@ -438,6 +438,13 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 		// TODO Auto-generated method stub
 		System.out.println("PositionResponse : NetValue : "+ positionResponse.getNetValue()+ " MTM : "+positionResponse.getMTM() + " Realized MTM :"+positionResponse.getRealizedMTM());
 	}
+	
+	@Override
+	public void onTradeConversion(TradeConversionResponse orderExecutionResponse) {
+		// TODO Auto-generated method stub
+		System.out.println("tradeConversionResponse "+tradeConversionResponse);
+
+	}
 
 	
 }

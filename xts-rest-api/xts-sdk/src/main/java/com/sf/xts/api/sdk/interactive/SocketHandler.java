@@ -103,7 +103,17 @@ public class SocketHandler implements XTSAPIInteractiveEvents{
 					onTrade(response);
 				}
 			});
-
+			
+			socket.on("tradeConversion", new Emitter.Listener() {
+				@Override
+				public void call(Object... args) {
+					logger.info("**got tradeConversion**");
+					Gson gson = new Gson();
+					TradeConversionResponse response = gson.fromJson(args[0].toString(), TradeConversionResponse.class);
+					onTradeConversion(response);
+				}
+			});
+			
 			socket.on("order", new Emitter.Listener() {
 				@Override
 				public void call(Object... args) {
@@ -187,5 +197,11 @@ public class SocketHandler implements XTSAPIInteractiveEvents{
 	public void onPosition(PositionResponse obj) {
 		for (XTSAPIInteractiveEvents hl : listeners)
 			hl.onPosition(obj);
+	}
+	
+	@Override
+	public void onTradeConversion(TradeConversionResponse obj) {
+		for (XTSAPIInteractiveEvents hl : listeners)
+			hl.onTradeConversion(obj);
 	}
 }

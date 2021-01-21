@@ -106,6 +106,14 @@ public class SocketHandler implements XTSAPIMarketdataEvents{
 				}
 			}
 		});
+		
+		socket.on("1105-json-partial", new Emitter.Listener() {
+			@Override
+			public void call(Object... args) {
+				System.out.println("instrumentPropertyChangeEvent: "+args[0]);
+				onInstrumentPropertyChangeEvent(args[0]);
+			}
+		});
 		socket.on("1502-json-partial", new Emitter.Listener() {
 			@Override
 			public void call(Object... args) {
@@ -258,5 +266,12 @@ public class SocketHandler implements XTSAPIMarketdataEvents{
 	public void onMarketDataResponseTouchLine(MarketDataResponseTouchLine marketDataResponseTouchLine) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void onInstrumentPropertyChangeEvent(Object args) {
+		// TODO Auto-generated method stub
+		for (XTSAPIMarketdataEvents hl : listeners)
+			hl.onInstrumentPropertyChangeEvent(args);
 	}
 }

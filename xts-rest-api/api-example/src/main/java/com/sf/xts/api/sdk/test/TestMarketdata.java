@@ -723,4 +723,10 @@ public class TestMarketdata  implements XTSAPIMarketdataEvents {
 		return localDateTime;
 		
 	}
+	
+	@Override
+	public void onInstrumentPropertyChangeEvent(Object instrumentPropertyChange) {
+		// TODO Auto-generated method stub
+		System.out.println("InstrumentPropertyChange:  "+instrumentPropertyChange);
+	}
 }

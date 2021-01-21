@@ -15,6 +15,7 @@ import com.sf.xts.api.sdk.interactive.marketStatus.MarketStatusResponse;
 import com.sf.xts.api.sdk.interactive.modifyOrder.ModifyOrderRequest;
 import com.sf.xts.api.sdk.interactive.modifyOrder.ModifyOrderResponse;
 import com.sf.xts.api.sdk.interactive.orderbook.OrderBook;
+import com.sf.xts.api.sdk.interactive.TradeConversionResponse;
 import com.sf.xts.api.sdk.interactive.orderhistory.OrderHistoryResponse;
 import com.sf.xts.api.sdk.interactive.placeCoverOrder.PlaceCoverOrderRequest;
 import com.sf.xts.api.sdk.interactive.placeCoverOrder.PlaceCoverOrderResponse;
@@ -440,7 +441,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 	}
 	
 	@Override
-	public void onTradeConversion(TradeConversionResponse orderExecutionResponse) {
+	public void onTradeConversion(TradeConversionResponse tradeConversionResponse) {
 		// TODO Auto-generated method stub
 		System.out.println("tradeConversionResponse "+tradeConversionResponse);
 

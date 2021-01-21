@@ -41,4 +41,7 @@ public interface XTSAPIMarketdataEvents {
 	 * @param marketDataResponseOI  object of marketDataResponseOI
 	 */
 	void onMarketDataResponseOI(MarketDataResponseOI marketDataResponseOI);
+	
+	void onInstrumentPropertyChangeEvent(Object args);
+
 }

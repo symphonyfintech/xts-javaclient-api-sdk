@@ -26,7 +26,29 @@ public class RequestHandler {
 	public static Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 	private HttpClient httpClient = HttpClientBuilder.create().setSSLSocketFactory(ConfigurationProvider.sslSocketFactory).build();
 	ObjectMapper objectMapper = new ObjectMapper();
-	
+
+	String processPostHttpHostRequest(HttpPost request, JSONObject data, String requestname) {
+		logger.info("-----POST " + requestname + " REQUEST-----" + request);
+		HttpResponse response = null;
+		String content = null;
+		try {
+			request.addHeader("content-type", "application/json");
+			request.setEntity(new StringEntity(data.toString()));
+			request.addHeader("content-type", "application/json");
+			response = this.httpClient.execute(request);
+			HttpEntity entity = (new CheckResponse()).check(response);
+			content = EntityUtils.toString(entity);
+			logger.info("-----POST " + requestname + " RESPONSE-----" + content);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (APIException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return content;
+	}
+
 	String processPostHttpRequest(HttpPost request,JSONObject data, String  requestname){
 		logger.info("-----POST "+requestname+" REQUEST-----"+request);
 		HttpResponse response = null;
@@ -51,7 +73,7 @@ public class RequestHandler {
 			e.printStackTrace();
 		}
 		return content;
-		
+
 	}
 	
 	

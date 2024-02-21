@@ -57,7 +57,10 @@ public abstract class ConfigurationProvider {
 	public static String unsubscription = null;
 	public static String instrumentByID = null;
 	public static String searchInstrument = null;
-
+	public static String accesspassword=null;
+	public static String version=null;
+	public static String port=null;
+	public static String hostLookUp=null;
 	public static String prefixINT = null;
 	public static String interactiveURL = null;
 	public static String loginINT = null;
@@ -98,6 +101,7 @@ public abstract class ConfigurationProvider {
 			// get the property value and print it out
 			commonURL = prop.getProperty("COMMON_URL");
 			source = prop.getProperty("SOURCE");
+			port = prop.getProperty("PORT");
 			prefixMD = prop.getProperty("PREFIX_MD");
 			marketDataURL = commonURL.concat(prefixMD);
 			loginMD = prop.getProperty("LOGIN_MD");
@@ -117,7 +121,9 @@ public abstract class ConfigurationProvider {
 			unsubscription = prop.getProperty("UNSUBSCRIPTION_MD");
 			instrumentByID = prop.getProperty("INSTRUMENT_BY_ID");
 			searchInstrument = prop.getProperty("SEARCH_INSTRUMENT");
-
+			hostLookUp = prop.getProperty("HOST_LOOK_UP");
+			accesspassword = prop.getProperty("ACCESS_PASSWORD");
+			version = prop.getProperty("VERSION");
 			prefixINT = prop.getProperty("PREFIX_INT");
 			interactiveURL = commonURL.concat(prefixINT);
 			loginINT = prop.getProperty("LOGIN_INT");

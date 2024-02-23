@@ -92,7 +92,7 @@ public abstract class ConfigurationProvider {
 		try {
 			Path path = FileSystems.getDefault().getPath("").toAbsolutePath();
 			Properties prop = System.getProperties();
-			propertyFileName = path + "\\"+propFileName;
+			propertyFileName = path + File.separator +propFileName;
 			logger.info("config.properties file path : " + propertyFileName);
 
 			inputStream =  new FileInputStream(propertyFileName);
@@ -139,11 +139,11 @@ public abstract class ConfigurationProvider {
 			orderBook = prop.getProperty("ORDERBOOK");
 			cover = prop.getProperty("COVER");
 			exchangeMessage = prop.getProperty("EXCHANGE_MESSAGE");
-
+			String sslCertPath = prop.getProperty("java.home") + prop.getProperty("SSL_CERT_PATH");
 			sslType= prop.getProperty("SSL_TYPE");
 			// Trust own CA and all self-signed certificates
 			SSLContext sslcontext = SSLContexts.custom()
-					.loadTrustMaterial(new File(prop.getProperty("SSL_CERT_PATH")), "changeit".toCharArray(), new TrustSelfSignedStrategy())
+					.loadTrustMaterial(new File(sslCertPath), "changeit".toCharArray(), new TrustSelfSignedStrategy())
 					.build();
 
 			sslSocketFactory = new SSLConnectionSocketFactory(

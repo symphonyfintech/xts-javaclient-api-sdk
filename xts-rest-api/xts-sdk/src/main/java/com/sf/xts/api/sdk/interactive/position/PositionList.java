@@ -5,7 +5,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class PositionList {
-	
+
+    @SerializedName("TradingSymbol")
+    @Expose
+    private String tradingSymbol;
     @SerializedName("MessageVersion")
     @Expose
     private Number messageVersion;
@@ -21,7 +24,7 @@ public class PositionList {
     @SerializedName("MessageCode")
     @Expose
     private Number messageCode;
-    @SerializedName("LoginID")
+    @SerializedName("AccountID")
     @Expose
     private String loginID;
     @SerializedName("MTM")
@@ -45,9 +48,18 @@ public class PositionList {
     @SerializedName("UnrealizedMTM")
     @Expose
     private String unrealizedMTM;
-    @SerializedName("NetPosition")
+    @SerializedName("Quantity")
     @Expose
     private Number netPosition;
+    @SerializedName("BuyAmount")
+    @Expose
+    private Number buyAmount;
+    @SerializedName("SellAmount")
+    @Expose
+    private Number sellAmount;
+    @SerializedName("NetAmount")
+    @Expose
+    private Number netAmount;
     @SerializedName("ApplicationType")
     @Expose
     private Number applicationType;
@@ -109,6 +121,22 @@ public class PositionList {
      */
     public void setBuyValue(String buyValue) {
         this.buyValue = buyValue;
+    }
+
+    /**
+     * it return tradingSymbol
+     * @return String
+     */
+    public String getTradingSymbol() {
+        return tradingSymbol;
+    }
+
+    /**
+     * it set the tradingSymbol
+     * @param tradingSymbol String
+     */
+    public void setTradingSymbol(String tradingSymbol) {
+        this.tradingSymbol = tradingSymbol;
     }
 
     /**
@@ -301,6 +329,54 @@ public class PositionList {
      */
     public void setNetPosition(Number netPosition) {
         this.netPosition = netPosition;
+    }
+
+    /**
+     * it return buyAmount
+     * @return Number
+     */
+    public Number getBuyAmount() {
+        return buyAmount;
+    }
+
+    /**
+     * it set the buyAmount
+     * @param buyAmount Number
+     */
+    public void setBuyAmount(Number buyAmount) {
+        this.buyAmount = buyAmount;
+    }
+
+    /**
+     * it return sellAmount
+     * @return Number
+     */
+    public Number getSellAmount() {
+        return sellAmount;
+    }
+
+    /**
+     * it set the sellAmount
+     * @param sellAmount Number
+     */
+    public void setSellAmount(Number sellAmount) {
+        this.sellAmount = sellAmount;
+    }
+
+    /**
+     * it return netAmount
+     * @return Number
+     */
+    public Number getNetAmount() {
+        return netAmount;
+    }
+
+    /**
+     * it set the netAmount
+     * @param netAmount Number
+     */
+    public void setNetAmount(Number netAmount) {
+        this.netAmount = netAmount;
     }
 
     /**

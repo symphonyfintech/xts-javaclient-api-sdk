@@ -28,7 +28,7 @@ public class RequestHandler {
 	ObjectMapper objectMapper = new ObjectMapper();
 
 	String processPostHttpHostRequest(HttpPost request, JSONObject data, String requestname) {
-		logger.info("-----POST " + requestname + " REQUEST-----" + request);
+		logger.debug("-----POST " + requestname + " REQUEST-----" + request);
 		HttpResponse response = null;
 		String content = null;
 		try {
@@ -38,7 +38,7 @@ public class RequestHandler {
 			response = this.httpClient.execute(request);
 			HttpEntity entity = (new CheckResponse()).check(response);
 			content = EntityUtils.toString(entity);
-			logger.info("-----POST " + requestname + " RESPONSE-----" + content);
+			logger.debug("-----POST " + requestname + " RESPONSE-----" + content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class RequestHandler {
 	}
 
 	String processPostHttpRequest(HttpPost request,JSONObject data, String  requestname){
-		logger.info("-----POST "+requestname+" REQUEST-----"+request);
+		logger.debug("-----POST "+requestname+" REQUEST-----"+request);
 		HttpResponse response = null;
 		String content = null;
 		try {
@@ -64,7 +64,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.info("-----POST "+requestname+" RESPONSE-----"+content);
+			logger.debug("-----POST "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,7 +78,7 @@ public class RequestHandler {
 	
 	
 	String processPostHttpRequest(HttpPost request, String  requestname,StringEntity entity){
-		logger.info("-----POST "+requestname+" REQUEST-----"+request);
+		logger.debug("-----POST "+requestname+" REQUEST-----"+request);
 		HttpResponse response = null;
 		String content = null;
 		
@@ -92,7 +92,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity httpEntity = new CheckResponse().check(response);
 			content = EntityUtils.toString(httpEntity);
-			logger.info("-----POST "+requestname+" RESPONSE-----"+content);
+			logger.debug("-----POST "+requestname+" RESPONSE-----"+content);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -106,7 +106,7 @@ public class RequestHandler {
 	}
 	
 	String processGettHttpRequest(HttpGet request, String  requestname){
-		logger.info("-----GET  "+requestname+" REQUEST-----"+request);
+		logger.debug("-----GET  "+requestname+" REQUEST-----"+request);
 		request.addHeader("content-type", "application/json");
 		if(request.getURI().toString().contains("marketdata"))
 			request.addHeader("authorization", MarketdataClient.authToken);
@@ -119,7 +119,7 @@ public class RequestHandler {
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
 
-			logger.info("-----GET  "+requestname+" RESPONSE-----"+content);
+			logger.debug("-----GET  "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class RequestHandler {
 	}
 	
 	String processPutHttpRequest(HttpPut request,JSONObject data, String  requestname){
-		logger.info("-----PUT  "+requestname+" REQUEST-----"+request);
+		logger.debug("-----PUT  "+requestname+" REQUEST-----"+request);
 		request.addHeader("content-type", "application/json");
 		String content = null;
 		if(request.getURI().toString().contains("marketdata"))
@@ -146,7 +146,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.info("-----PUT "+requestname+" RESPONSE-----"+content);
+			logger.debug("-----PUT "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,7 +160,7 @@ public class RequestHandler {
 	
 	
 	String processDeleteHttpRequest(HttpDelete request, String  requestname){
-		logger.info("-----DELETE  "+requestname+" REQUEST-----"+request);
+		logger.debug("-----DELETE  "+requestname+" REQUEST-----"+request);
 		request.addHeader("content-type", "application/json");
 		if(request.getURI().toString().contains("marketdata"))
 			request.addHeader("authorization", MarketdataClient.authToken);
@@ -173,7 +173,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.info("-----DELETE  "+requestname+" RESPONSE-----"+content);
+			logger.debug("-----DELETE  "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

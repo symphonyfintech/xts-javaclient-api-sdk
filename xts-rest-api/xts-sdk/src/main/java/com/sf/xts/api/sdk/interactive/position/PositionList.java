@@ -69,7 +69,7 @@ public class PositionList {
     @SerializedName("UniqueKey")
     @Expose
     private String uniqueKey;
-    @SerializedName("ExchangeInstrumentID")
+    @SerializedName("ExchangeInstrumentId")
     @Expose
     private Number exchangeInstrumentID;
     @SerializedName("ShortPosition")

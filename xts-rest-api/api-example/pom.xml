@@ -6,7 +6,7 @@
 
 	<groupId>com.symphony.xts.rest</groupId>
 	<artifactId>api-example</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 
 	<name>api-example</name>
 	<!-- FIXME change it to the project's website -->
@@ -128,9 +128,9 @@
 		<dependency>
 			<groupId>com.symphonyfintech.xts.rest</groupId>
 			<artifactId>xts-rest</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/xts-rest-1.0-SNAPSHOT.jar</systemPath>
+			<systemPath>${project.basedir}/lib/xts-rest-1.0.jar</systemPath>
 		</dependency>
 	</dependencies>
 

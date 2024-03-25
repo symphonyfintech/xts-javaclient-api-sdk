@@ -60,7 +60,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			String appKey="INTERACTIVE-APP-KEY";
 			interactiveClient.Login(secretKey, appKey); //FINDOC
 			if(InteractiveClient.authToken == null) {
-				logger.debug(".....Login error......");
+				logger.error(".....Login error......");
 				return;
 			}
 			
@@ -72,9 +72,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				UserBalanceResponse userBalanceResponse = interactiveClient.getUserBalance();
-				logger.debug("UserBalanceResponse : " + userBalanceResponse.getResult().getBalanceList().toString());
+				logger.info("UserBalanceResponse : " + userBalanceResponse.getResult().getBalanceList().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//USERPROFILERESPONSE
@@ -85,11 +85,11 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				UserProfileResponse userProfileResponse = interactiveClient.getUserProfile();
-				logger.debug("UserProfileResponse  Residential Address: " + userProfileResponse.getResult().getResidentialAddress().toString());
-				logger.debug("UserProfileResponse  ClientName: " + userProfileResponse.getResult().getClientName().toString());
-				logger.debug("UserProfileResponse  ClientId: " + userProfileResponse.getResult().getClientId().toString());
+				logger.info("UserProfileResponse  Residential Address: " + userProfileResponse.getResult().getResidentialAddress().toString());
+				logger.info("UserProfileResponse  ClientName: " + userProfileResponse.getResult().getClientName().toString());
+				logger.info("UserProfileResponse  ClientId: " + userProfileResponse.getResult().getClientId().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//MARKETSTATUSRESPONSE
@@ -100,10 +100,10 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				MarketStatusResponse marketStatusResponse = interactiveClient.getMarketStatus();
-				logger.debug("MarketStatusResponse : " + marketStatusResponse.getResult().toString());
-				logger.debug("MarketStatus : "+marketStatusResponse.getResult().getMarketStatus());
+				logger.info("MarketStatusResponse : " + marketStatusResponse.getResult().toString());
+				logger.info("MarketStatus : "+marketStatusResponse.getResult().getMarketStatus());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//HOLDINGRESPONSE
@@ -114,11 +114,11 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				HoldingResponse holdingResponse = interactiveClient.getHoldings();
-				logger.debug("HoldingResponse : " + holdingResponse.getResult().toString());
-				logger.debug("RMSHoldingList : " +holdingResponse.getResult().getRMSHoldingList());
-				logger.debug("ClientID : " +holdingResponse.getResult().getClientId());
+				logger.info("HoldingResponse : " + holdingResponse.getResult().toString());
+				logger.info("RMSHoldingList : " +holdingResponse.getResult().getRMSHoldingList());
+				logger.info("ClientID : " +holdingResponse.getResult().getClientId());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//POSITIONRESPONSE
@@ -131,10 +131,10 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			try {
 				String posType = "DayWise";
 				Position positionResponse = interactiveClient.getPosition(posType);
-				logger.debug("PositionResponse : " + positionResponse.getResult().toString());
-				logger.debug("PositionResponse PositionList : " + positionResponse.getResult().getPositionList().toString());
+				logger.info("PositionResponse : " + positionResponse.getResult().toString());
+				logger.info("PositionResponse PositionList : " + positionResponse.getResult().getPositionList().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//POSITIONCONVERTRESPONSE
@@ -160,9 +160,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 					 newProductType = "NRML";
 				}};
 				PositionConvertResponse positionConvertResponse = interactiveClient.PositionConvert(positionConvertRequest);
-				logger.debug("PositionConvertResponse : " + positionConvertResponse.getResult().toString());
+				logger.info("PositionConvertResponse : " + positionConvertResponse.getResult().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -193,7 +193,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 					 }};
 				interactiveClient.SquareOff(squareoffrequest);
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 		//	TRADEBOOK
@@ -204,10 +204,10 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				TradeBookResponse  tradeBookResponse = interactiveClient.getTradeBook();
-				logger.debug("TradeBookResponse : " + tradeBookResponse.getResult().toString());
+				logger.info("TradeBookResponse : " + tradeBookResponse.getResult().toString());
 				
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -221,9 +221,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			try {
 				String appOrderid = "4217201064";
 				OrderHistoryResponse orderHistoryResponse = interactiveClient.getOrderHistory(appOrderid);
-				logger.debug("OrderHistoryResponse : " + orderHistoryResponse.getResult().toString());
+				logger.info("OrderHistoryResponse : " + orderHistoryResponse.getResult().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			//ORDERBOOKRESPONSE
@@ -234,9 +234,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			 */
 			try {
 				OrderBook orderBookResponse = interactiveClient.getOrderBook();
-				logger.debug("OrderBookResponse : " + orderBookResponse.getResult().toString());
+				logger.info("OrderBookResponse : " + orderBookResponse.getResult().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -251,7 +251,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 				String appOrderid = "3786967461";
 				interactiveClient.PlaceExitCoverOrder(appOrderid);
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 					
 			
@@ -290,7 +290,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 				productType = "MIS";
 			}};
 			PlaceOrderResponse placeOrderResponse = interactiveClient.PlaceOrder(placeOrderRequest);
-			logger.debug("placeOrderResponse AppOrderId : " + placeOrderResponse.getResult().getAppOrderID().toString());
+			logger.info("placeOrderResponse AppOrderId : " + placeOrderResponse.getResult().getAppOrderID().toString());
 			
 			
 			//PLACECOVERORDER
@@ -321,9 +321,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 				}};
 				
 				PlaceCoverOrderResponse placeCoverOrderResponse = interactiveClient.PlaceCoverOrder(placecoverOrderRequest);
-				logger.debug("PlaceCoverOrderResponse : " + placeCoverOrderResponse.getResult().toString());
+				logger.info("PlaceCoverOrderResponse : " + placeCoverOrderResponse.getResult().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -357,11 +357,11 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 				}};
 				
 				ModifyOrderResponse modifyOrderResponse = interactiveClient.ModifyOrder(modifyOrderRequest);
-				logger.debug("ModifyOrderResponse : " + modifyOrderResponse.toString());
+				logger.info("ModifyOrderResponse : " + modifyOrderResponse.toString());
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -376,9 +376,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			try {
 				String appOrderid = "3786967446";
 				CancelOrderResponse cancelOrderResponse = interactiveClient.CancelOrder(appOrderid);
-				logger.debug("CancelOrderResponse : " + cancelOrderResponse.getDescription().toString());
+				logger.info("CancelOrderResponse : " + cancelOrderResponse.getDescription().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -393,9 +393,9 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			try {
 				String exchangeSegment = "NSECM";
 				ExchangeMessageResponse exchangeMessageResponse = interactiveClient.ExchangeMessage(exchangeSegment);
-				logger.debug("ExchangeMessageResponse : " + exchangeMessageResponse.getResult().toString());
+				logger.info("ExchangeMessageResponse : " + exchangeMessageResponse.getResult().toString());
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 			
 			
@@ -410,7 +410,7 @@ public class TestInteractive  implements XTSAPIInteractiveEvents {
 			try {
 				interactiveClient.Logout();
 			} catch (APIException e) {
-				logger.debug(e.toString());
+				logger.info(e.toString());
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

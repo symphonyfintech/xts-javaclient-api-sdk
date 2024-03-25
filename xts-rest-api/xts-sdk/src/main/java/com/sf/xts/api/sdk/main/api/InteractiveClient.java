@@ -53,7 +53,6 @@ public  class InteractiveClient extends ConfigurationProvider  {
 	private HttpClient httpClient = HttpClientBuilder.create().build();
 	Gson gson = new Gson();
 	private static SocketHandler sh=null;
-	public static String uniqueKey = null;
 	public static String authToken = null;
 	public static String user = null;
 	public static boolean isInvestorClient = true;
@@ -74,26 +73,6 @@ public  class InteractiveClient extends ConfigurationProvider  {
 	}
 
 	/**
-	 * it hostLookUp
-	 * @return uniqueKey
-	 * @throws APIException catch the exception in your implementation
-	 * @throws IOException
-	 * @throws ClientProtocolException
-	 */
-	@SuppressWarnings("unchecked")
-	public void HostLookUp() throws APIException {
-		HttpPost request = new HttpPost(commonURL+port + hostLookUp);
-		request.addHeader("content-type", "application/json");
-		JSONObject data = new JSONObject();
-		data.put("accesspassword", accesspassword);
-		data.put("version", version);
-		String response = this.requestHandler.processPostHttpHostRequest(request, data, "HOSTLOOKUP");
-		JSONObject jsonObject = new JSONObject(response);
-		uniqueKey = (String)((JSONObject)jsonObject.get("result")).get("uniqueKey");
-		interactiveURL = (String)((JSONObject)jsonObject.get("result")).get("connectionString");
-	}
-
-	/**
 	 * it login with provided secretKey, appKey ,  source and create interactive session  
 	 * @param secretKey - secretKey
 	 * @param appKey - application key
@@ -104,22 +83,20 @@ public  class InteractiveClient extends ConfigurationProvider  {
 	 * @throws ClientProtocolException 
 	 */
 	@SuppressWarnings("unchecked")
-	public String Login(String secretKey, String appKey) throws APIException {
-		this.HostLookUp();
+	public String Login(String secretKey,String appKey) throws APIException{
 		HttpPost request = new HttpPost(interactiveURL + loginINT);
 		request.addHeader("content-type", "application/json");
 		JSONObject data = new JSONObject();
 		data.put("secretKey", secretKey);
 		data.put("appKey", appKey);
-		data.put("uniqueKey", uniqueKey);
 		data.put("source", source);
-		String response = this.requestHandler.processPostHttpRequest(request, data, "LOGIN");
+		String response = requestHandler.processPostHttpRequest(request,data,"LOGIN");
 		JSONObject jsonObject = new JSONObject(response);
-		authToken = (String)((JSONObject)jsonObject.get("result")).get("token");
-		user = (String)((JSONObject)jsonObject.get("result")).get("userID");
-		isInvestorClient = (Boolean)((JSONObject)jsonObject.get("result")).get("isInvestorClient");
-		if (authToken != null) {
-			initializeListner(this.xtsapiInteractiveEvents);
+		authToken = (String) (((JSONObject) jsonObject.get("result")).get("token"));
+		user = (String) (((JSONObject) jsonObject.get("result")).get("userID"));
+		isInvestorClient = (boolean)(((JSONObject) jsonObject.get("result")).get("isInvestorClient"));
+		if(authToken!=null) {
+			initializeListner(xtsapiInteractiveEvents);
 		}
 		return authToken;
 	}

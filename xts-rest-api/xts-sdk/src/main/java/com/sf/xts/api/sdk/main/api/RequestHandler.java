@@ -27,28 +27,6 @@ public class RequestHandler {
 	private HttpClient httpClient = HttpClientBuilder.create().setSSLSocketFactory(ConfigurationProvider.sslSocketFactory).build();
 	ObjectMapper objectMapper = new ObjectMapper();
 
-	String processPostHttpHostRequest(HttpPost request, JSONObject data, String requestname) {
-		logger.info("-----POST " + requestname + " REQUEST-----" + request);
-		HttpResponse response = null;
-		String content = null;
-		try {
-			request.addHeader("content-type", "application/json");
-			request.setEntity(new StringEntity(data.toString()));
-			request.addHeader("content-type", "application/json");
-			response = this.httpClient.execute(request);
-			HttpEntity entity = (new CheckResponse()).check(response);
-			content = EntityUtils.toString(entity);
-			logger.info("-----POST " + requestname + " RESPONSE-----" + content);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (APIException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return content;
-	}
-
 	String processPostHttpRequest(HttpPost request,JSONObject data, String  requestname){
 		logger.info("-----POST "+requestname+" REQUEST-----"+request);
 		HttpResponse response = null;
@@ -64,7 +42,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.debug("-----POST "+requestname+" RESPONSE-----"+content);
+			logger.info("-----POST "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +70,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity httpEntity = new CheckResponse().check(response);
 			content = EntityUtils.toString(httpEntity);
-			logger.debug("-----POST "+requestname+" RESPONSE-----"+content);
+			logger.info("-----POST "+requestname+" RESPONSE-----"+content);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -119,7 +97,7 @@ public class RequestHandler {
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
 
-			logger.debug("-----GET  "+requestname+" RESPONSE-----"+content);
+			logger.info("-----GET  "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,7 +124,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.debug("-----PUT "+requestname+" RESPONSE-----"+content);
+			logger.info("-----PUT "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,7 +151,7 @@ public class RequestHandler {
 			response = httpClient.execute(request);
 			HttpEntity entity = new CheckResponse().check(response);
 			content = EntityUtils.toString(entity);
-			logger.debug("-----DELETE  "+requestname+" RESPONSE-----"+content);
+			logger.info("-----DELETE  "+requestname+" RESPONSE-----"+content);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

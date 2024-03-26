@@ -26,7 +26,7 @@ public class RequestHandler {
 	public static Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 	private HttpClient httpClient = HttpClientBuilder.create().setSSLSocketFactory(ConfigurationProvider.sslSocketFactory).build();
 	ObjectMapper objectMapper = new ObjectMapper();
-
+	
 	String processPostHttpRequest(HttpPost request,JSONObject data, String  requestname){
 		logger.info("-----POST "+requestname+" REQUEST-----"+request);
 		HttpResponse response = null;
@@ -51,7 +51,7 @@ public class RequestHandler {
 			e.printStackTrace();
 		}
 		return content;
-
+		
 	}
 	
 	

@@ -50,8 +50,7 @@ public class RequestHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return content;
-
+		return null;
 	}
 	
 	

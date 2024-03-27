@@ -6,7 +6,7 @@
 
 	<groupId>com.symphonyfintech.xts.rest</groupId>
 	<artifactId>xts-rest</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1.1</version>
 
 	<name>xts-rest</name>
 	<!-- FIXME change it to the project's website -->

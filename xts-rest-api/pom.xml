@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.symphonyfintech.xts.rest</groupId>
     <artifactId>xts-rest-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1.1</version>
   </parent>
   
   <artifactId>xts-api</artifactId>

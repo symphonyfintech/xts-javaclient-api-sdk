@@ -2,10 +2,13 @@ package com.sf.xts.api.sdk.interactive.cancelOrder;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.sf.xts.api.sdk.interactive.placeOrder.Result;
 
 
 public class CancelOrderResponse {
-
+    @SerializedName("result")
+    @Expose
+    private Result result;
     @SerializedName("code")
     @Expose
     private String code;
@@ -18,6 +21,21 @@ public class CancelOrderResponse {
     @Expose
     private String type;
 
+    /**
+     * it return result
+     * @return Result
+     */
+    public Result getResult() {
+        return result;
+    }
+
+    /**
+     * it set result
+     * @param result Result
+     */
+    public void setResult(Result result) {
+        this.result = result;
+    }
 	/**
 	 * it return code
 	 * @return String

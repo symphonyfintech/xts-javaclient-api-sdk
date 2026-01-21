@@ -36,6 +36,9 @@ public class Result {
     @SerializedName("OrderGeneratedDateTime")
     @Expose
     private String orderGeneratedDateTime;
+    @SerializedName("ExchangeTransactTime")
+    @Expose
+    private String exchangeTransactTime;
     @SerializedName("ExchangeSegment")
     @Expose
     private String exchangeSegment;
@@ -259,7 +262,21 @@ public class Result {
     public void setOrderGeneratedDateTime(String orderGeneratedDateTime) {
         this.orderGeneratedDateTime = orderGeneratedDateTime;
     }
+    /**
+     * it return exchangeTransactTime
+     * @return String
+     */
+    public String getExchangeTransactTime() {
+        return exchangeTransactTime;
+    }
 
+    /**
+     * it set exchangeTransactTime
+     * @param exchangeTransactTime String
+     */
+    public void setExchangeTransactTime(String exchangeTransactTime) {
+        this.exchangeTransactTime = exchangeTransactTime;
+    }
     /**
      * it return exchangeSegment
      * @return String
